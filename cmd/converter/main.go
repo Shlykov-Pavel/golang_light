@@ -40,13 +40,13 @@ func askUser()(string, string, float64) {
 	return currencyChange, currencyTarget, summ
 }
 
-func countCurrency(currencyChange string, currencyTarget string, summ float64) float64 {
-	return summ * rates[currencyChange] / rates[currencyTarget]
+func countCurrency(currencyChange string, currencyTarget string, summ *float64) float64 {
+	return *summ * rates[currencyChange] / rates[currencyTarget]
 }
 
 func main() {
 	currencyChange, currencyTarget, summ := askUser()
-	result := countCurrency(currencyChange, currencyTarget, summ)
+	result := countCurrency(currencyChange, currencyTarget, &summ)
 
 	fmt.Printf("Сумма сконвертированной валюты из %s в %s составит %.2f\n", currencyChange, currencyTarget, result)
 
